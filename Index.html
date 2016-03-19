@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Avaliacao</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/myApp.js"></script>
+	<script type="text/javascript" src="js/controller/formCtrl.js"></script>
+	<meta charset="UTF-8"/>
+</head>
+<body ng-controller="FormCtrl">
+	<!-- Inicio Container-->
+	<div class="container">
+		<!-- Inicio jumbotron-->
+		<div class="jumbotron">	
+			<!-- Inicio form-->
+			<form id="form">
+				<!-- Inicio Criar painel com borda 1-->
+				<div class="panel panel-default">
+					<!-- Inicio Criar painel com borda 2-->
+					<div class="panel-body">
+						
+						<!-- Inicio Titulo deixando visuvel de acordo coma ação-->
+						<h3 ng-hide="clicouEditar"><strong>Cadastrar</strong></h3>
+						<h3 ng-show="clicouEditar"><strong>Editar</strong></h3>
+						<!-- Fim Titulo-->
+
+						<!-- Cria uma linha-->
+						<div class="row">
+
+							<!-- Inicio group 4 colunas-->
+							<div class="form-group col-xs-4">
+								<label for="name">Nome:</label>
+								<input type="text" class="form-control" id="name" ng-model="name" placeholder="Nome"></input>
+								<label for="email">E-mail:</label>
+								<input type="email" class="form-control" id="email" ng-model="email" placeholder="E-mail"></input>
+								<label for="phone">Telefone:</label>
+								<input type="text" class="form-control" id="phone" ng-model="phone" placeholder="Telefone"></input>
+								<div class="row">
+									<br>
+									<div class="form-group col-xs-12" ng-hide="clicouEditar">
+										<button class="btn-primary pull-right" ng-click="cadastraNovo(name, email, phone)">Adicionar</button>
+									</div>
+
+									<div class="form-group col-xs-9" ng-show="clicouEditar">
+										<button class="btn-danger pull-right" ng-click="cancelar()">Cancelar</button>
+									</div>
+
+									<div class="form-group col-xs-3" ng-show="clicouEditar">
+										<button class="btn-success pull-right" ng-click="renomearCadastro(name, email, phone)">Salvar</button>
+									</div>
+								</div>
+
+								<div class="row" ng-show="clicouEditar">
+									<div class="form-group col-xs-11" >
+										<div class="alert alert-success" role="alert"><strong>Aviso:</strong> Dados salvos automaticamente</div>
+									</div>
+								</div>
+							</div>
+							<!-- Final group 4 colunas-->
+
+							<!-- Inicio group 8 colunas-->
+							<div class="form-group col-xs-8">
+								<!-- Tabela 1-->
+								<table class="table">
+					    			<thead>	
+					    				<tr>
+					    					<th>Nome</th>
+					    					<th>E-mail</th>
+					    					<th>Telefone</th>
+					    					<th>Opções</th>
+					    				</tr>
+					    			</thead>
+					    			<tbody>
+					    				<tr ng-repeat = "item in list">
+					    					<td ng-bind= "item.nome"></td>
+					    					<td ng-bind= "item.email"></td>
+					    					<td ng-bind= "item.fone"></td>
+					    					<td>
+					    						<button class="btn btn-danger" ng-click="removeCadastro($index)">
+					    							<i class="glyphicon glyphicon-trash"></i>
+					    						</button>
+
+					    						<button class="btn btn-success" ng-click=editaCadastro($index)>
+					    							<i class="glyphicon glyphicon-pencil"></i>
+					    						</button>					    						
+					    					</td>
+					    				</tr>
+					    			</tbody>
+				    			</table>
+								<!-- Final Tabela 1-->
+							</div>
+							<!-- Final group 8 colunas-->
+						</div>
+						<!-- Final linha-->
+					</div>
+					<!-- Fim Painel - 2-->
+				</div>
+				<!-- Fim Painel - 1-->
+			</form>
+			<!-- Fim form-->
+		</div>
+		<!-- Fim jumbotron-->
+	</div>
+	<!-- Fim Container-->
+</body>
+</html>
